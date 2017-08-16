@@ -1,6 +1,6 @@
 {
-	"name": "dom-helper",
-	"version": "0.0.0",
+	"name": "simple-dom-helper",
+	"version": "0.0.2",
 	"description": "Offers simple helper functions to interact with DOM elements. Basically a really lightweight version of jQuery. The whole thing is a commonJS module.",
 	"main": "index.js",
 	"scripts": {

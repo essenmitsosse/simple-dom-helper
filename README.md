@@ -1,4 +1,4 @@
-# dom-helper
+# simple-dom-helper
 
 [![Build Status](https://travis-ci.org/essenmitsosse/simple-dom-helper.svg?branch=master)](https://travis-ci.org/essenmitsosse/simple-dom-helper) [![Coverage Status](https://coveralls.io/repos/github/essenmitsosse/simple-dom-helper/badge.svg?branch=master)](https://coveralls.io/github/essenmitsosse/simple-dom-helper?branch=master)
 

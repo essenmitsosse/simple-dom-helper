@@ -1,36 +1,37 @@
 {
-	"name": "simple-dom-helper",
-	"version": "0.0.3",
-	"description": "Offers simple helper functions to interact with DOM elements. Basically a really lightweight version of jQuery. The whole thing is a commonJS module.",
-	"main": "index.js",
-	"scripts": {
-		"test": "mocha --reporter spec",
-		"cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
-	},
-	"files": [
-		"index.js"
-	],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/essenmitsosse/dom-helper.git"
-	},
-	"keywords": [
-		"dom",
-		"javascript",
-		"frontend"
-	],
-	"author": "Marcus Blättermann <kontakt@essenmitsosse.de> (http://essenmitsosse.de)",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/essenmitsosse/dom-helper/issues"
-	},
-	"homepage": "https://github.com/essenmitsosse/dom-helper#readme",
-	"devDependencies": {
-		"chai": "^4.1.1",
-		"coveralls": "^2.13.1",
-		"istanbul": "^0.4.5",
-		"jsdom": "11.1.0",
-		"jsdom-global": "3.0.2",
-		"mocha": "^3.5.0"
-	}
+  "name": "simple-dom-helper",
+  "version": "0.0.3",
+  "description": "Offers simple helper functions to interact with DOM elements. Basically a really lightweight version of jQuery. The whole thing is a commonJS module.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec",
+    "watchtest": "mocha --watch --reporter min",
+    "cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
+  },
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/essenmitsosse/dom-helper.git"
+  },
+  "keywords": [
+    "dom",
+    "javascript",
+    "frontend"
+  ],
+  "author": "Marcus Blättermann <kontakt@essenmitsosse.de> (http://essenmitsosse.de)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/essenmitsosse/dom-helper/issues"
+  },
+  "homepage": "https://github.com/essenmitsosse/dom-helper#readme",
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "coveralls": "^2.13.1",
+    "istanbul": "^0.4.5",
+    "jsdom-global": "3.0.2",
+    "mocha": "^3.5.0",
+    "sinon": "^3.2.1"
+  }
 }

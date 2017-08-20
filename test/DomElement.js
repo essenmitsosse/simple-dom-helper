@@ -5,7 +5,9 @@ var expect = require( "chai" )
 	.expect,
 	spy = require( "sinon" )
 	.spy,
-	DomElement = require( "../lib/DomElement" );
+	jsdom = require( "jsdom-global" ),
+	DomElement = require( "../lib/DomElement" ),
+	domHelper = require( "../index" );
 
 function getDomStub( width, height, x, y ) {
 	return {
@@ -20,20 +22,20 @@ function getDomStub( width, height, x, y ) {
 	};
 }
 
-before( function () {
-	this.jsdom = require( "jsdom-global" )();
-} );
-
-after( function () {
-	this.jsdom()
-} );
-
 beforeEach( function () {
-	this.testDiv = document.createElement( "div" );
-	this.$domElement = new DomElement( this.testDiv );
+	global.cleanup = jsdom()
+} );
+
+afterEach( function () {
+	global.cleanup()
 } );
 
 describe( "DomElement", function () {
+	beforeEach( function () {
+		this.testDiv = document.createElement( "div" );
+		this.$domElement = new DomElement( this.testDiv );
+	} );
+
 	it( "getDomElement returns the acutal DOM element", function () {
 		var domElement = new DomElement( this.testDiv );
 
@@ -603,4 +605,113 @@ describe( "DomElement", function () {
 			} );
 		} );
 	} );
+	describe( "Getting Children", function () {
+
+		beforeEach( function () {
+			this.childDiv1 = document.createElement( "div" );
+			this.childDiv2 = document.createElement( "div" );
+
+			this.testDiv.appendChild( this.childDiv1 );
+			this.testDiv.appendChild( this.childDiv2 );
+		} );
+
+		describe( "getElementById should", function () {
+			it( "not exist", function () {
+				expect( this.$domElement.getElementById )
+					.to.equal( undefined );
+			} );
+		} );
+
+		describe( "getElementByClassName should", function () {
+			it( "get the first element with the given class name", function () {
+				this.childDiv1.className = "classNameToBeLookingFor anotherClassName";
+				this.childDiv2.className = "classNameToBeLookingFor anotherClassName";
+
+				expect( this.$domElement.getElementByClassName( "classNameToBeLookingFor" )
+						.getDomElement() )
+					.to.equal( this.childDiv1 );
+
+				expect( this.$domElement.getElementByClassName( "classNameToBeLookingFor" )
+						.getDomElement() )
+					.to.not.equal( this.childDiv2 );
+			} );
+
+			it( "return 'false' if no element is found", function () {
+				expect( this.$domElement.getElementByClassName( "nonExistingClassName" ) )
+					.to.equal( false );
+			} );
+		} );
+
+		describe( "getElementByTagName should", function () {
+			it( "get the first element with the given tag name", function () {
+
+				expect( this.$domElement.getElementByTagName( "div" )
+						.getDomElement() )
+					.to.equal( this.childDiv1 );
+
+				expect( this.$domElement.getElementByTagName( "div" )
+						.getDomElement() )
+					.to.not.equal( this.childDiv2 );
+			} );
+
+			it( "return 'false' if no element is found", function () {
+				expect( this.$domElement.getElementByTagName( "nonExistingTagName" ) )
+					.to.equal( false );
+			} );
+		} );
+
+		describe( "domElement Lists", function () {
+			describe( "should return a list of all elements", function () {
+				it( "getElementsByClassName", function () {
+					var $domElementList;
+
+					this.childDiv1.className = "classNameToBeLookingFor anotherClassName";
+					this.childDiv2.className = "classNameToBeLookingFor anotherClassName";
+
+					$domElementList = this.$domElement.getElementsByClassName( "classNameToBeLookingFor" );
+
+					expect( $domElementList.getList() )
+						.to.be.an( 'array' );
+
+					expect( $domElementList.getList()[ 0 ].getDomElement() )
+						.to.equal( this.childDiv1 );
+
+					expect( $domElementList.getList()[ 1 ].getDomElement() )
+						.to.equal( this.childDiv2 );
+				} );
+
+				it( "getElementsByTagName", function () {
+					var $domElementList;
+
+					$domElementList = this.$domElement.getElementsByTagName( "div" );
+
+					expect( $domElementList.getList() )
+						.to.be.an( 'array' );
+
+					expect( $domElementList.getList()[ 0 ].getDomElement() )
+						.to.equal( this.childDiv1 );
+
+					expect( $domElementList.getList()[ 1 ].getDomElement() )
+						.to.equal( this.childDiv2 );
+				} );
+			} );
+		} );
+	} );
+	describe( "'remove'", function () {
+		it( "removes object from DOM", function () {
+			var childDiv1 = document.createElement( "div" ),
+				$childDiv1 = domHelper.createFromElement( childDiv1 );
+
+			this.testDiv.appendChild( childDiv1 );
+
+			expect( this.testDiv.childElementCount )
+				.to.equal( 1 );
+
+			$childDiv1.remove();
+
+			expect( this.testDiv.childElementCount )
+				.to.equal( 0 );
+		} );
+	} )
+
 } );

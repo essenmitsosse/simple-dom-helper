@@ -7,7 +7,7 @@ var expect = require( "chai" )
 	.spy,
 	jsdom = require( "jsdom-global" ),
 	DomElement = require( "../lib/DomElement" ),
-	domHelper = require( "../index" );
+	domHelper = require( "../simple-dom-helper" );
 
 function getDomStub( width, height, x, y ) {
 	return {

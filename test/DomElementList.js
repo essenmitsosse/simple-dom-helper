@@ -2,7 +2,7 @@
 
 var expect = require( "chai" )
 	.expect,
-	domHelper = require( "../index" ),
+	domHelper = require( "../simple-dom-helper" ),
 	jsdom = require( "jsdom-global" ),
 	domElementListFactory = require( "../lib/domElementListFactory" );
 

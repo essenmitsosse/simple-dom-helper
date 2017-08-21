@@ -41,6 +41,28 @@ describe( "domHelper", function () {
 			.to.equal( false );
 	} );
 
+	describe( "'create' should", function () {
+		it( "return a DomElement element", function () {
+			expect( domHelper.create( "TAGNAME" ) instanceof DomElement )
+				.to.equal( true );
+		} );
+
+		it( "return a DOM element with the given tag name", function () {
+			expect( domHelper.create( "TESTTAGNAME" )
+					.getHtmlElement()
+					.tagName )
+				.to.equal( "TESTTAGNAME" );
+		} );
+
+		it( "return a DOM element with the given attributes", function () {
+			expect( domHelper.create( "TAGNAME", {
+						"attributeName": "attributeValue"
+					} )
+					.getAttribute( "attributeName" ) )
+				.to.equal( "attributeValue" );
+		} );
+	} );
+
 	describe( "'getElementById' should", function () {
 		it( "get the element with the given id", function () {
 			this.testDiv1.setAttribute( "id", "foo" );

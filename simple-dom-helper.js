@@ -3,6 +3,14 @@
 var domElementFactory = require( "./lib/domElementFactory" ),
 	domElementListFactory = require( "./lib/domElementListFactory" );
 
+function create( tagName, args ) {
+	var $element = domElementFactory( document.createElement( tagName ) );
+
+	$element.setAttributes( args );
+
+	return $element;
+}
+
 function createFromElement( element ) {
 	return domElementFactory( element );
 }
@@ -32,6 +40,7 @@ function getElementsByTagName( tagName ) {
 }
 
 module.exports = {
+	create: create,
 	createFromElement: createFromElement,
 	createFromElementList: createFromElementList,
 	getElementById: getElementById,

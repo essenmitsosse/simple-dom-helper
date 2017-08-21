@@ -5,7 +5,7 @@
 	"main": "simple-dom-helper.js",
 	"scripts": {
 		"test": "mocha -R spec test/*",
-		"watchtest": "mocha -R min test/*",
+		"watchtest": "mocha -R min test/* -watch",
 		"cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
 	},
 	"files": [

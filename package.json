@@ -1,6 +1,6 @@
 {
 	"name": "simple-dom-helper",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Offers simple helper functions to interact with DOM elements. Basically a really lightweight version of jQuery. The whole thing is a commonJS module.",
 	"main": "simple-dom-helper.js",
 	"scripts": {
@@ -8,7 +8,6 @@
 		"watchtest": "mocha --watch --reporter min",
 		"cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
 	},
-
 	"files": [
 		"lib/",
 		"index.js"

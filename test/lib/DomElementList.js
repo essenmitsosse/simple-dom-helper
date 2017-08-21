@@ -22,12 +22,12 @@ describe( "DomElementList", function () {
 		this.testDiv1.className = "existingClass";
 		this.testDiv1.setAttribute( "style", "color:red" );
 
-		this.elementList = domElementListFactory( [ this.testDiv1, this.testDiv2 ] );
+		this.$elementList = domElementListFactory( [ this.testDiv1, this.testDiv2 ] );
 	} );
 
 	describe( "'map' should apply a function to each DomElement in a list", function () {
 		it( "addClass", function () {
-			this.elementList.map( "addClass", [ "testClass" ] );
+			this.$elementList.map( "addClass", [ "testClass" ] );
 
 			expect( this.testDiv1.className )
 				.to.equal( "existingClass testClass" );
@@ -36,7 +36,7 @@ describe( "DomElementList", function () {
 		} );
 
 		it( "style", function () {
-			this.elementList.map( "style", [ {
+			this.$elementList.map( "style", [ {
 				"font-size": "12px"
 			} ] );
 
@@ -47,12 +47,19 @@ describe( "DomElementList", function () {
 		} );
 
 		it( "setAttribute", function () {
-			this.elementList.map( "setAttribute", [ "testAttribute", "testValue" ] );
+			this.$elementList.map( "setAttribute", [ "testAttribute", "testValue" ] );
 
 			expect( this.testDiv1.getAttribute( "testAttribute" ) )
 				.to.equal( "testValue" );
 			expect( this.testDiv2.getAttribute( "testAttribute" ) )
 				.to.equal( "testValue" );
+		} );
+	} );
+
+	describe( "'getLength' should", function () {
+		it( "return the number of elements in the list", function () {
+			expect( this.$elementList.getLength() )
+				.to.equal( 2 );
 		} );
 	} );
 } );

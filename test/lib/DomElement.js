@@ -7,6 +7,7 @@ var expect = require( "chai" )
 	.spy,
 	jsdom = require( "jsdom-global" ),
 	DomElement = require( "../../lib/DomElement" ),
+	DomElementList = require( "../../lib/DomElementList" ),
 	domHelper = require( "../../simple-dom-helper" );
 
 function getDomStub( width, height, x, y ) {
@@ -697,6 +698,7 @@ describe( "DomElement", function () {
 			} );
 		} );
 	} );
+
 	describe( "'remove'", function () {
 		it( "removes object from DOM", function () {
 			var childDiv1 = document.createElement( "div" ),
@@ -712,6 +714,125 @@ describe( "DomElement", function () {
 			expect( this.testDiv.childElementCount )
 				.to.equal( 0 );
 		} );
-	} )
+	} );
 
+	describe( "'append' should", function () {
+		it( "append the given element to this element as a child", function () {
+			var $newChildDomElement = domHelper.create( "div" );
+
+			this.$domElement.append( $newChildDomElement );
+
+			expect( $newChildDomElement.getHtmlElement()
+					.parentElement )
+				.to.equal( this.$domElement.getHtmlElement() );
+		} );
+	} );
+
+	describe( "'appendList' should", function () {
+		it( "append all given elements to this element as a children", function () {
+			var $newChildDomElement = domHelper.create( "div" ),
+				$anotherNewChildDomElement = domHelper.create( "div" );
+
+			this.$domElement.appendList( [ $newChildDomElement, $anotherNewChildDomElement ] );
+
+			expect( $newChildDomElement.getHtmlElement()
+					.parentElement )
+				.to.equal( this.$domElement.getHtmlElement() );
+
+			expect( $anotherNewChildDomElement.getHtmlElement()
+					.parentElement )
+				.to.equal( this.$domElement.getHtmlElement() );
+		} );
+	} );
+
+	describe( "'parent' should", function () {
+		it( "return the parent DomElement", function () {
+			var $newChildDomElement = domHelper.create( "div" );
+
+			this.$domElement.getHtmlElement()
+				.appendChild( $newChildDomElement.getHtmlElement() );
+
+			expect( $newChildDomElement.parent()
+					.getHtmlElement() )
+				.to.equal( this.$domElement.getHtmlElement() );
+		} );
+
+		it( "return the parent DomElement, even after it has been moved", function () {
+			var $newChildDomElement = domHelper.create( "div" ),
+				$newParentDomElement = domHelper.create( "div" );
+
+			this.$domElement.getHtmlElement()
+				.appendChild( $newChildDomElement.getHtmlElement() );
+
+			$newParentDomElement.getHtmlElement()
+				.appendChild( $newChildDomElement.getHtmlElement() );
+
+			expect( $newChildDomElement.parent()
+					.getHtmlElement() )
+				.to.equal( $newParentDomElement.getHtmlElement() );
+		} );
+
+		it( "return 'null' if there is no parent", function () {
+			var $newDomElementWithoutParent = domHelper.create( "div" );
+
+			expect( $newDomElementWithoutParent.parent() )
+				.to.equal( null );
+		} );
+
+		it( "return 'document' if the parent is the document itself", function () {
+			var $bodyElement = domHelper.createFromElement( document.getElementsByTagName( "html" )[ 0 ] );
+
+			expect( $bodyElement.parent()
+					.getHtmlElement() )
+				.to.equal( document );
+		} );
+	} );
+
+	describe( "'children' should", function () {
+		it( "return a DomElementList of all children DomElements", function () {
+			var $newChildDomElement = domHelper.create( "div" ),
+				$anotherNewChildDomElement = domHelper.create( "div" ),
+				$list;
+
+			this.$domElement.getHtmlElement()
+				.appendChild( $newChildDomElement.getHtmlElement() );
+			this.$domElement.getHtmlElement()
+				.appendChild( $anotherNewChildDomElement.getHtmlElement() );
+
+			$list = this.$domElement.children();
+
+			expect( $list instanceof DomElementList )
+				.to.equal( true );
+
+			expect( $list.getList()[ 0 ] )
+				.to.equal( $newChildDomElement );
+
+			expect( $list.getList()[ 1 ] )
+				.to.equal( $anotherNewChildDomElement );
+
+		} );
+
+		it( "return a empty DomElementList if there are no children", function () {
+			var $list;
+
+			$list = this.$domElement.children();
+
+			expect( $list instanceof DomElementList )
+				.to.equal( true );
+
+			expect( $list.getList()
+					.length )
+				.to.equal( 0 );
+
+		} );
+	} );
+
+	it( "should throw, if a DomElement is passed as an argument", function () {
+		var $domElement;
+
+		expect( function () {
+				$domElement = domHelper.createFromElement( domHelper.create( "div" ) )
+			} )
+			.to.throw();
+	} )
 } );

@@ -62,4 +62,15 @@ describe( "DomElementList", function () {
 				.to.equal( 2 );
 		} );
 	} );
+
+	describe( "Errors", function () {
+		it( "should throw, if a DomElement is passed as part of the list", function () {
+			var $domElementList;
+
+			expect( function () {
+					$domElementList = domElementListFactory( [ domHelper.create( "div" ) ] );
+				} )
+				.to.throw();
+		} );
+	} );
 } );

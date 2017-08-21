@@ -2,9 +2,9 @@
 
 var expect = require( "chai" )
 	.expect,
-	domHelper = require( "../simple-dom-helper" ),
+	domHelper = require( "../../simple-dom-helper" ),
 	jsdom = require( "jsdom-global" ),
-	domElementListFactory = require( "../lib/domElementListFactory" );
+	domElementListFactory = require( "../../lib/domElementListFactory" );
 
 beforeEach( function () {
 	global.cleanup = jsdom()

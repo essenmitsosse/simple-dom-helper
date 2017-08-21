@@ -6,8 +6,8 @@ var expect = require( "chai" )
 	spy = require( "sinon" )
 	.spy,
 	jsdom = require( "jsdom-global" ),
-	DomElement = require( "../lib/DomElement" ),
-	domHelper = require( "../simple-dom-helper" );
+	DomElement = require( "../../lib/DomElement" ),
+	domHelper = require( "../../simple-dom-helper" );
 
 function getDomStub( width, height, x, y ) {
 	return {
@@ -36,10 +36,10 @@ describe( "DomElement", function () {
 		this.$domElement = new DomElement( this.testDiv );
 	} );
 
-	it( "getDomElement returns the acutal DOM element", function () {
+	it( "getHtmlElement returns the acutal DOM element", function () {
 		var domElement = new DomElement( this.testDiv );
 
-		expect( domElement.getDomElement() )
+		expect( domElement.getHtmlElement() )
 			.to.equal( this.testDiv );
 	} );
 
@@ -628,11 +628,11 @@ describe( "DomElement", function () {
 				this.childDiv2.className = "classNameToBeLookingFor anotherClassName";
 
 				expect( this.$domElement.getElementByClassName( "classNameToBeLookingFor" )
-						.getDomElement() )
+						.getHtmlElement() )
 					.to.equal( this.childDiv1 );
 
 				expect( this.$domElement.getElementByClassName( "classNameToBeLookingFor" )
-						.getDomElement() )
+						.getHtmlElement() )
 					.to.not.equal( this.childDiv2 );
 			} );
 
@@ -646,11 +646,11 @@ describe( "DomElement", function () {
 			it( "get the first element with the given tag name", function () {
 
 				expect( this.$domElement.getElementByTagName( "div" )
-						.getDomElement() )
+						.getHtmlElement() )
 					.to.equal( this.childDiv1 );
 
 				expect( this.$domElement.getElementByTagName( "div" )
-						.getDomElement() )
+						.getHtmlElement() )
 					.to.not.equal( this.childDiv2 );
 			} );
 
@@ -673,10 +673,10 @@ describe( "DomElement", function () {
 					expect( $domElementList.getList() )
 						.to.be.an( 'array' );
 
-					expect( $domElementList.getList()[ 0 ].getDomElement() )
+					expect( $domElementList.getList()[ 0 ].getHtmlElement() )
 						.to.equal( this.childDiv1 );
 
-					expect( $domElementList.getList()[ 1 ].getDomElement() )
+					expect( $domElementList.getList()[ 1 ].getHtmlElement() )
 						.to.equal( this.childDiv2 );
 				} );
 
@@ -688,10 +688,10 @@ describe( "DomElement", function () {
 					expect( $domElementList.getList() )
 						.to.be.an( 'array' );
 
-					expect( $domElementList.getList()[ 0 ].getDomElement() )
+					expect( $domElementList.getList()[ 0 ].getHtmlElement() )
 						.to.equal( this.childDiv1 );
 
-					expect( $domElementList.getList()[ 1 ].getDomElement() )
+					expect( $domElementList.getList()[ 1 ].getHtmlElement() )
 						.to.equal( this.childDiv2 );
 				} );
 			} );

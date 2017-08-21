@@ -33,7 +33,7 @@ describe( "domHelper", function () {
 			.to.equal( new DomElement( this.testDiv1 ) );
 
 		expect( this.testDiv1 )
-			.to.equal( this.$domElement.getDomElement() );
+			.to.equal( this.$domElement.getHtmlElement() );
 	} );
 
 	it( "return 'false' if no element was given", function () {
@@ -46,7 +46,7 @@ describe( "domHelper", function () {
 			this.testDiv1.setAttribute( "id", "foo" );
 
 			expect( domHelper.getElementById( "foo" )
-					.getDomElement() )
+					.getHtmlElement() )
 				.to.equal( this.testDiv1 );
 		} );
 
@@ -68,11 +68,11 @@ describe( "domHelper", function () {
 			this.body.appendChild( testDiv2 );
 
 			expect( domHelper.getElementByClassName( "classNameToBeLookingFor" )
-					.getDomElement() )
+					.getHtmlElement() )
 				.to.equal( testDiv1 );
 
 			expect( domHelper.getElementByClassName( "classNameToBeLookingFor" )
-					.getDomElement() )
+					.getHtmlElement() )
 				.to.not.equal( testDiv2 );
 		} );
 
@@ -86,11 +86,11 @@ describe( "domHelper", function () {
 		it( "get the first element with the given tag name", function () {
 
 			expect( domHelper.getElementByTagName( "div" )
-					.getDomElement() )
+					.getHtmlElement() )
 				.to.equal( this.testDiv1 );
 
 			expect( domHelper.getElementByTagName( "div" )
-					.getDomElement() )
+					.getHtmlElement() )
 				.to.not.equal( this.testDiv2 );
 		} );
 
@@ -113,10 +113,10 @@ describe( "domHelper", function () {
 				expect( $domElementList.getList() )
 					.to.be.an( 'array' );
 
-				expect( $domElementList.getList()[ 0 ].getDomElement() )
+				expect( $domElementList.getList()[ 0 ].getHtmlElement() )
 					.to.equal( this.testDiv1 );
 
-				expect( $domElementList.getList()[ 1 ].getDomElement() )
+				expect( $domElementList.getList()[ 1 ].getHtmlElement() )
 					.to.equal( this.testDiv2 );
 			} );
 
@@ -128,10 +128,10 @@ describe( "domHelper", function () {
 				expect( $domElementList.getList() )
 					.to.be.an( 'array' );
 
-				expect( $domElementList.getList()[ 0 ].getDomElement() )
+				expect( $domElementList.getList()[ 0 ].getHtmlElement() )
 					.to.equal( this.testDiv1 );
 
-				expect( $domElementList.getList()[ 1 ].getDomElement() )
+				expect( $domElementList.getList()[ 1 ].getHtmlElement() )
 					.to.equal( this.testDiv2 );
 			} );
 
@@ -141,10 +141,10 @@ describe( "domHelper", function () {
 				expect( $domElementList.getList() )
 					.to.be.an( 'array' );
 
-				expect( $domElementList.getList()[ 0 ].getDomElement() )
+				expect( $domElementList.getList()[ 0 ].getHtmlElement() )
 					.to.equal( this.testDiv1 );
 
-				expect( $domElementList.getList()[ 1 ].getDomElement() )
+				expect( $domElementList.getList()[ 1 ].getHtmlElement() )
 					.to.equal( this.testDiv2 );
 			} )
 		} );

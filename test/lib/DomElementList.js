@@ -36,7 +36,7 @@ describe( "DomElementList", function () {
 		} );
 
 		it( "style", function () {
-			this.$elementList.map( "style", [ {
+			this.$elementList.map( "setStyle", [ {
 				"font-size": "12px"
 			} ] );
 

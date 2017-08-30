@@ -368,4 +368,23 @@ describe( "DomElement - Basics", function () {
 			.to.throw();
 	} );
 
+	describe( "HTML getter/setter", function () {
+		describe( "'setHTML' should", function () {
+			it( "replace the innerHTML", function () {
+				this.$domElement.setHTML( "<b>HTML</b> Content" );
+
+				expect( this.testDiv.innerHTML )
+					.to.equal( "<b>HTML</b> Content" );
+			} );
+		} );
+		describe( "'getHTML' should", function () {
+			it( "return the innerHTML", function () {
+				this.testDiv.innerHTML = "<b>HTML</b> Content";
+
+				expect( this.$domElement.getHTML() )
+					.to.equal( "<b>HTML</b> Content" );
+
+			} );
+		} );
+	} );
 } );

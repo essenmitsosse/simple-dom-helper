@@ -375,39 +375,6 @@ describe( "DomElement", function () {
 					.to.equal( null );
 			} );
 		} );
-		describe( "Data setting", function () {
-			describe( "'setData' should", function () {
-				it( "set the data", function () {
-					this.$domElement.setData( "testDataName", "testData" );
-
-					expect( this.testDiv.getAttribute( "data-testDataName" ) )
-						.to.equal( "testData" );
-				} )
-			} );
-			describe( "'getData' should", function () {
-				it( "get the data", function () {
-					this.testDiv.setAttribute( "data-testDataName", "testData" );
-
-					expect( this.$domElement.getData( "testDataName" ) )
-						.to.equal( "testData" );
-				} )
-
-				it( "return null if no data exists", function () {
-					expect( this.$domElement.getData( "nonExistingDataName" ) )
-						.to.equal( null );
-				} )
-			} );
-			describe( "'removeData' should", function () {
-				it( "remove existing data", function () {
-					this.testDiv.setAttribute( "data-removedDataName", "testData" );
-
-					this.$domElement.removeData( "removedDataName" );
-
-					expect( this.$domElement.getData( "removedDataName" ) )
-						.to.equal( null );
-				} )
-			} );
-		} );
 
 		describe( "'html' should", function () {
 			it( "replace the innerHTML", function () {

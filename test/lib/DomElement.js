@@ -141,40 +141,40 @@ describe( "DomElement", function () {
 			} );
 		} );
 
-		describe( "DomElement adding classes with 'addClassArray'", function () {
+		describe( "DomElement adding classes with 'addClasses'", function () {
 			it( "adds class name to the element", function () {
-				this.$domElement.addClassArray( [ "testClassName" ] );
+				this.$domElement.addClasses( [ "testClassName" ] );
 
 				expect( this.testDiv.className )
 					.to.equal( "testClassName" );
 			} );
 
 			it( "adds two class names to the element", function () {
-				this.$domElement.addClassArray( [ "anothertestClassName", "moreTestClassName" ] );
+				this.$domElement.addClasses( [ "anothertestClassName", "moreTestClassName" ] );
 
 				expect( this.testDiv.className )
 					.to.equal( "anothertestClassName moreTestClassName" );
 			} );
 
 			it( "a class name that is already there isnt added again", function () {
-				this.$domElement.addClassArray( [ "classNameThatIsAddedTwice" ] );
-				this.$domElement.addClassArray( [ "classNameThatIsAddedTwice" ] );
+				this.$domElement.addClasses( [ "classNameThatIsAddedTwice" ] );
+				this.$domElement.addClasses( [ "classNameThatIsAddedTwice" ] );
 
 				expect( this.testDiv.className )
 					.to.equal( "classNameThatIsAddedTwice" );
 			} );
 
 			it( "a class name that is already there isnt added again, but a new one is", function () {
-				this.$domElement.addClassArray( [ "testClassName" ] );
-				this.$domElement.addClassArray( [ "anotherTestClassName" ] );
+				this.$domElement.addClasses( [ "testClassName" ] );
+				this.$domElement.addClasses( [ "anotherTestClassName" ] );
 
 				expect( this.testDiv.className )
 					.to.equal( "testClassName anotherTestClassName" );
 			} );
 
 			it( "a class name that is already there isnt added again, but a new one is, even when they are added at the same time", function () {
-				this.$domElement.addClassArray( [ "testClassName" ] );
-				this.$domElement.addClassArray( [ "testClassName", "anotherTestClassName" ] );
+				this.$domElement.addClasses( [ "testClassName" ] );
+				this.$domElement.addClasses( [ "testClassName", "anotherTestClassName" ] );
 
 				expect( this.testDiv.className )
 					.to.equal( "testClassName anotherTestClassName" );
@@ -215,10 +215,10 @@ describe( "DomElement", function () {
 			} );
 		} );
 
-		describe( "DomElement removing classes with 'removeClassArray'", function () {
+		describe( "DomElement removing classes with 'removeClasses'", function () {
 			it( "removes class name from an element", function () {
 				this.$domElement.addClass( "testClassNameToBeRemoved" );
-				this.$domElement.removeClassArray( [ "testClassNameToBeRemoved" ] );
+				this.$domElement.removeClasses( [ "testClassNameToBeRemoved" ] );
 
 				expect( this.testDiv.className )
 					.to.equal( "" );
@@ -226,7 +226,7 @@ describe( "DomElement", function () {
 
 			it( "removes class name from an element but leaves all other class names", function () {
 				this.$domElement.addClass( "classNameNotToBeRemoved testClassNameToBeRemoved" );
-				this.$domElement.removeClassArray( [ "testClassNameToBeRemoved" ] );
+				this.$domElement.removeClasses( [ "testClassNameToBeRemoved" ] );
 
 				expect( this.testDiv.className )
 					.to.equal( "classNameNotToBeRemoved" );
@@ -234,7 +234,7 @@ describe( "DomElement", function () {
 
 			it( "does nothing if the class name doesn’t exists", function () {
 				this.$domElement.addClass( "classNameNotToBeRemoved" );
-				this.$domElement.removeClassArray( [ "nonExistingClassName" ] );
+				this.$domElement.removeClasses( [ "nonExistingClassName" ] );
 
 				expect( this.testDiv.className )
 					.to.equal( "classNameNotToBeRemoved" );
@@ -242,7 +242,7 @@ describe( "DomElement", function () {
 
 			it( "removes more then one class name at once", function () {
 				this.$domElement.addClass( "classNameNotToBeRemoved testClassNameToBeRemoved anotherClassNameToBeRemoved" );
-				this.$domElement.removeClassArray( [ "testClassNameToBeRemoved", "anotherClassNameToBeRemoved" ] );
+				this.$domElement.removeClasses( [ "testClassNameToBeRemoved", "anotherClassNameToBeRemoved" ] );
 
 				expect( this.testDiv.className )
 					.to.equal( "classNameNotToBeRemoved" );

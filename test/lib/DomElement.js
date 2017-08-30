@@ -714,6 +714,27 @@ describe( "DomElement", function () {
 			expect( this.testDiv.childElementCount )
 				.to.equal( 0 );
 		} );
+
+		it( "does nothing if object has no parent/is not part of the DOM", function () {
+			var noParentDiv = document.createElement( "div" ),
+				$noParentDiv = domHelper.createFromElement( noParentDiv );
+
+			expect( $noParentDiv.remove() )
+				.to.not.throw;
+		} );
+
+		it( "if object is added again to the DOM after removal, it is still cached", function () {
+			var childDiv1 = document.createElement( "div" ),
+				$childDiv1 = domHelper.createFromElement( childDiv1 );
+
+			this.testDiv.appendChild( childDiv1 );
+			$childDiv1.remove();
+			this.testDiv.appendChild( childDiv1 );
+
+			expect( this.$domElement.getElementByTagName( "div" ) )
+				.to.equal( $childDiv1 );
+
+		} );
 	} );
 
 	describe( "'append' should", function () {

@@ -418,53 +418,6 @@ describe( "DomElement", function () {
 			} );
 		} );
 
-		describe( "'attr' should", function () {
-			beforeEach( function () {
-				this.setAttributeSpy = spy( this.$domElement, "setAttribute" );
-				this.getAttributeSpy = spy( this.$domElement, "getAttribute" );
-			} )
-
-			it( "call 'getAttribute' when 1 parameter is given", function () {
-				this.$domElement.attr( "testAttribute" );
-
-				expect( this.setAttributeSpy.called )
-					.to.equal( false );
-				expect( this.getAttributeSpy.called )
-					.to.equal( true );
-			} );
-
-			it( "returns the attribute value when 1 parameter is given", function () {
-				this.testDiv.setAttribute( "testAttribute", "testValue" );
-
-				expect( this.$domElement.attr( "testAttribute" ) )
-					.to.equal( "testValue" );
-			} );
-
-			it( "call 'setAttribute' when 2 parameters is given", function () {
-				this.$domElement.attr( "testAttribute", "testValue" );
-
-				expect( this.setAttributeSpy.called )
-					.to.equal( true );
-				expect( this.getAttributeSpy.called )
-					.to.equal( false );
-			} );
-
-			it( "set the attribute when 2 parameters is given", function () {
-				this.$domElement.attr( "testAttribute", "testValue" );
-
-				expect( this.testDiv.getAttribute( "testAttribute" ) )
-					.to.equal( "testValue" );
-			} );
-
-			it( "remove the attribute when 'false' is given as a value", function () {
-				this.testDiv.setAttribute( "removedAttribute", "testValue" );
-
-				this.$domElement.attr( "removedAttribute", false );
-
-				expect( this.testDiv.getAttribute( 'removedAttribute' ) )
-					.to.equal( null );
-			} );
-		} );
 		describe( "Saving and Getting", function () {
 			it( "'save' should save data that can be returned with 'get'", function () {
 				this.$domElement.save( "testData", "testDataContent" );

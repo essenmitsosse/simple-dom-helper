@@ -1,14 +1,18 @@
 "use strict";
 
 // invoces DOM environment
-var expect = require( "chai" )
-	.expect,
-	spy = require( "sinon" )
-	.spy,
+var chai = require( "chai" ),
+	expect = chai.expect,
+	sinon = require( "sinon" ),
+	spy = sinon.spy,
+	sinonChai = require( "sinon-chai" ),
 	jsdom = require( "jsdom-global" ),
 	DomElement = require( "../../lib/DomElement" ),
 	DomElementList = require( "../../lib/DomElementList" ),
 	domHelper = require( "../../simple-dom-helper" );
+
+chai.should();
+chai.use( sinonChai );
 
 function getDomStub( width, height, x, y ) {
 	return {

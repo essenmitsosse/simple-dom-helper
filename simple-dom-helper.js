@@ -6,7 +6,7 @@ var domElementFactory = require( "./lib/domElementFactory" ),
 function create( tagName, args ) {
 	var $element = domElementFactory( document.createElement( tagName ) );
 
-	$element.setAttributes( args );
+	$element.bulkEdit( args );
 
 	return $element;
 }

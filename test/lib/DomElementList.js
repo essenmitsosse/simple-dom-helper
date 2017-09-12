@@ -7,11 +7,11 @@ var expect = require( "chai" )
 	domElementListFactory = require( "../../lib/domElementListFactory" );
 
 beforeEach( function () {
-	global.cleanup = jsdom()
+	global.cleanup = jsdom();
 } );
 
 afterEach( function () {
-	global.cleanup()
+	global.cleanup();
 } );
 
 describe( "DomElementList", function () {

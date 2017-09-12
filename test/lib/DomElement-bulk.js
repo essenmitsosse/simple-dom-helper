@@ -15,11 +15,11 @@ chai.should();
 chai.use( sinonChai );
 
 beforeEach( function () {
-	global.cleanup = jsdom()
+	global.cleanup = jsdom();
 } );
 
 afterEach( function () {
-	global.cleanup()
+	global.cleanup();
 } );
 
 describe( "DomElement - bulk edit:", function () {
@@ -56,14 +56,14 @@ describe( "DomElement - bulk edit:", function () {
 		{
 			name: "append",
 			getArguments: () => {
-				return domHelper.create( "div" )
+				return domHelper.create( "div" );
 			},
 			calledWithArgs: true
 		},
 		{
 			name: "appendList",
 			getArguments: () => {
-				return [ domHelper.create( "div" ) ]
+				return [ domHelper.create( "div" ) ];
 			},
 			calledWithArgs: true
 		},
@@ -71,7 +71,7 @@ describe( "DomElement - bulk edit:", function () {
 			name: "appendTo",
 
 			getArguments: () => {
-				return domHelper.create( "div" )
+				return domHelper.create( "div" );
 			},
 			calledWithArgs: true
 		},

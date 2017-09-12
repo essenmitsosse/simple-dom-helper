@@ -1,5 +1,6 @@
 {
 	"maxerr": 50, // {int} Maximum error before stopping
+	"indent": 1,
 
 	// Enforcing
 	"bitwise": true, // true: Prohibit bitwise operators (&, |, ^, etc.)

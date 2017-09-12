@@ -4,8 +4,6 @@
 // invoces DOM environment
 var chai = require( "chai" ),
 	expect = chai.expect,
-	sinon = require( "sinon" ),
-	spy = sinon.spy,
 	sinonChai = require( "sinon-chai" ),
 	jsdom = require( "jsdom-global" ),
 	DomElement = require( "../../lib/DomElement" ),
@@ -23,17 +21,17 @@ function getDomStub( width, height, x, y ) {
 			return {
 				left: x,
 				top: y
-			}
+			};
 		}
 	};
 }
 
 beforeEach( function () {
-	global.cleanup = jsdom()
+	global.cleanup = jsdom();
 } );
 
 afterEach( function () {
-	global.cleanup()
+	global.cleanup();
 } );
 
 describe( "DomElement - Basics", function () {
@@ -171,7 +169,7 @@ describe( "DomElement - Basics", function () {
 					$domElementList = this.$domElement.getElementsByClassName( "classNameToBeLookingFor" );
 
 					expect( $domElementList.getList() )
-						.to.be.an( 'array' );
+						.to.be.an( "array" );
 
 					expect( $domElementList.getList()[ 0 ].getHtmlElement() )
 						.to.equal( this.childDiv1 );
@@ -186,7 +184,7 @@ describe( "DomElement - Basics", function () {
 					$domElementList = this.$domElement.getElementsByTagName( "div" );
 
 					expect( $domElementList.getList() )
-						.to.be.an( 'array' );
+						.to.be.an( "array" );
 
 					expect( $domElementList.getList()[ 0 ].getHtmlElement() )
 						.to.equal( this.childDiv1 );
@@ -363,7 +361,7 @@ describe( "DomElement - Basics", function () {
 		var $domElement;
 
 		expect( function () {
-				$domElement = domHelper.createFromElement( domHelper.create( "div" ) )
+				$domElement = domHelper.createFromElement( domHelper.create( "div" ) );
 			} )
 			.to.throw();
 	} );

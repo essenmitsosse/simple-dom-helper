@@ -14,11 +14,11 @@ chai.should();
 chai.use( sinonChai );
 
 beforeEach( function () {
-	global.cleanup = jsdom()
+	global.cleanup = jsdom();
 } );
 
 afterEach( function () {
-	global.cleanup()
+	global.cleanup();
 } );
 
 describe( "DomElement - getter/setter for", function () {

@@ -7,11 +7,11 @@ var expect = require( "chai" )
 	jsdom = require( "jsdom-global" );
 
 beforeEach( function () {
-	global.cleanup = jsdom()
+	global.cleanup = jsdom();
 } );
 
 afterEach( function () {
-	global.cleanup()
+	global.cleanup();
 } );
 
 describe( "domHelper", function () {
@@ -153,7 +153,7 @@ describe( "domHelper", function () {
 				$domElementList = domHelper.getElementsByClassName( "classNameToBeLookingFor" );
 
 				expect( $domElementList.getList() )
-					.to.be.an( 'array' );
+					.to.be.an( "array" );
 
 				expect( $domElementList.getList()[ 0 ].getHtmlElement() )
 					.to.equal( this.testDiv1 );
@@ -168,7 +168,7 @@ describe( "domHelper", function () {
 				$domElementList = domHelper.getElementsByTagName( "div" );
 
 				expect( $domElementList.getList() )
-					.to.be.an( 'array' );
+					.to.be.an( "array" );
 
 				expect( $domElementList.getList()[ 0 ].getHtmlElement() )
 					.to.equal( this.testDiv1 );
@@ -181,14 +181,14 @@ describe( "domHelper", function () {
 				var $domElementList = domHelper.createFromElementList( [ this.testDiv1, this.testDiv2 ] );
 
 				expect( $domElementList.getList() )
-					.to.be.an( 'array' );
+					.to.be.an( "array" );
 
 				expect( $domElementList.getList()[ 0 ].getHtmlElement() )
 					.to.equal( this.testDiv1 );
 
 				expect( $domElementList.getList()[ 1 ].getHtmlElement() )
 					.to.equal( this.testDiv2 );
-			} )
+			} );
 		} );
 	} );
 } );

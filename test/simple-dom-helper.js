@@ -57,13 +57,29 @@ describe( "domHelper", function () {
 		} );
 
 		it( "return a DOM element with the given attributes", function () {
-			this.skip();
-
-			expect( domHelper.create( "TAGNAME", {
+			var bulkEditData = {
+					"setAttributes": {
 						"attributeName": "attributeValue"
-					} )
+					}
+				},
+				$domElement = domHelper.create( "TAGNAME", bulkEditData );
+
+			expect( $domElement.getHtmlElement()
 					.getAttribute( "attributeName" ) )
 				.to.equal( "attributeValue" );
+		} );
+
+		it( "return a DOM element with the given data", function () {
+			var bulkEditData = {
+					"setDatas": {
+						"dataName": 123
+					}
+				},
+				$domElement = domHelper.create( "TAGNAME", bulkEditData );
+
+			expect( $domElement
+					.getData( "dataName" ) )
+				.to.equal( 123 );
 		} );
 	} );
 

@@ -27,7 +27,7 @@ describe( "DomElementList from array of HTMLElements", function () {
 
 	describe( "'map' should apply a function to each DomElement in a list", function () {
 		it( "addClass", function () {
-			this.$elementList.map( "addClass", [ "testClass" ] );
+			this.$elementList.map( "addClass", "testClass" );
 
 			expect( this.testDiv1.className )
 				.to.equal( "existingClass testClass" );
@@ -36,9 +36,9 @@ describe( "DomElementList from array of HTMLElements", function () {
 		} );
 
 		it( "style", function () {
-			this.$elementList.map( "setStyle", [ {
+			this.$elementList.map( "setStyle", {
 				"font-size": "12px"
-			} ] );
+			} );
 
 			expect( this.testDiv1.getAttribute( "style" ) )
 				.to.equal( "color:red;font-size:12px" );
@@ -47,7 +47,7 @@ describe( "DomElementList from array of HTMLElements", function () {
 		} );
 
 		it( "setAttribute", function () {
-			this.$elementList.map( "setAttribute", [ "testAttribute", "testValue" ] );
+			this.$elementList.map( "setAttribute", "testAttribute", "testValue" );
 
 			expect( this.testDiv1.getAttribute( "testAttribute" ) )
 				.to.equal( "testValue" );
@@ -76,7 +76,7 @@ describe( "DomElementList from array of DomElements", function () {
 
 	describe( "'map' should apply a function to each DomElement in a list", function () {
 		it( "addClass", function () {
-			this.$elementList.map( "addClass", [ "testClass" ] );
+			this.$elementList.map( "addClass", "testClass" );
 
 			expect( this.$testDiv1.getHtmlElement()
 					.className )
@@ -97,7 +97,7 @@ describe( "DomElementList from array of HTMLCollection", function () {
 
 	describe( "'map' should apply a function to each DomElement in a list", function () {
 		it( "addClass", function () {
-			this.$elementList.map( "addClass", [ "testClass" ] );
+			this.$elementList.map( "addClass", "testClass" );
 
 			expect( document.body.getElementsByTagName( "div" )[ 0 ]
 					.className )
@@ -123,10 +123,10 @@ describe( "Bulk edit on DomElementList", function () {
 				$div1 = domHelper.createFromElement( div1 ),
 				$div2 = domHelper.createFromElement( div2 );
 
-			this.$elementList.map( "bulkEdit", [ {
+			this.$elementList.map( "bulkEdit", {
 				"addClass": "testClass",
 				"setData": [ "testDataName", "testData" ]
-			} ] );
+			} );
 
 			expect( div1.className )
 				.to.equal( "existingClass testClass" );

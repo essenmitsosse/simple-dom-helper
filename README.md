@@ -2,11 +2,13 @@
 
 [![Build Status](https://travis-ci.org/essenmitsosse/simple-dom-helper.svg?branch=master)](https://travis-ci.org/essenmitsosse/simple-dom-helper) [![Coverage Status](https://coveralls.io/repos/github/essenmitsosse/simple-dom-helper/badge.svg?branch=master)](https://coveralls.io/github/essenmitsosse/simple-dom-helper?branch=master) [![Dependency Status](https://david-dm.org/essenmitsosse/simple-dom-bulk-edit.svg)](https://david-dm.org/essenmitsosse/simple-dom-bulk-edit)
 
-Offers a dependency-free javascript library to interact with DOM elements. Basically a really lightweight version of DOM-interaction part of jQuery (but with a slightly different, more consistent syntax).
+Offers a dependency-free vanilla javascript library to interact with DOM elements. Basically a really lightweight version of DOM-interaction part of jQuery (but with a slightly different, more consistent syntax).
 
-The module is very small and has no dependencies and is intendet to be bundled with the rest of your Javascript.
+The module is intendet to be bundled with the rest of your Javascript.
 
 It is only available as commonJS-module as of now. For frontend use, you probably want to use a build tool like [Browserify](http://browserify.org/) or [WebPack](https://github.com/webpack/webpack).
+
+There are basically no checks for wrong types or values. It is assumed that you make sure to pass the correct values and the correct types. The advantage of this is, that it is really fast.
 
 ## Size
 
@@ -15,6 +17,12 @@ Format             | Size
 Normal             |  12k
 Uglified           |   8k
 Uglified & gzipped |   4k
+
+## Speed
+
+Simple Dom Helper is up to 8 times faster then jQuery and only 60% slower then native code -- while still offering a lot of useful functions for DOM manipulation.
+
+[jsPerf]()
 
 ## Installation
 
@@ -42,8 +50,6 @@ var $findDivAgain = $existingDiv.getElementByClassName( "foo" );
 $findDivAgain === $div // TRUE
 // The DomElement associated with an element in the dom is cached and it will always return the same object.
 ```
-
-There are basically no checks for wrong types or values. It is assumed that you make sure to pass the correct values and the correct types.
 
 ### domHelper
 

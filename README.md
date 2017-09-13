@@ -16,12 +16,12 @@ Simple Dom Helper is up to 8 times faster then jQuery and only 60% slower then n
 
 [jsPerf]()
 
-Format                    |     Size
-:------------------------ | -------:
-normal                    |    12 KB
-uglified                  |     8 KB
-uglified & gzipped        |     4 KB
-jQuery minified & gzipped | 28.32 KB
+Format                    |  Size
+:------------------------ | ----:
+normal                    | 12 KB
+uglified                  |  8 KB
+uglified & gzipped        |  4 KB
+jQuery minified & gzipped | 28 KB
 
 ## Installation
 

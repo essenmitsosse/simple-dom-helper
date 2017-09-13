@@ -14,7 +14,7 @@ afterEach( function () {
 	global.cleanup();
 } );
 
-describe( "DomElementList", function () {
+describe( "DomElementList from array of HTMLElements", function () {
 	beforeEach( function () {
 		this.testDiv1 = document.createElement( "div" );
 		this.testDiv2 = document.createElement( "div" );
@@ -62,5 +62,80 @@ describe( "DomElementList", function () {
 				.to.equal( 2 );
 		} );
 	} );
+} );
 
+describe( "DomElementList from array of DomElements", function () {
+	beforeEach( function () {
+		this.$testDiv1 = domHelper.create( "div" );
+		this.$testDiv2 = domHelper.create( "div" );
+
+		this.$testDiv1.addClass( "existingClass" );
+
+		this.$elementList = domElementListFactory( [ this.$testDiv1, this.$testDiv2 ] );
+	} );
+
+	describe( "'map' should apply a function to each DomElement in a list", function () {
+		it( "addClass", function () {
+			this.$elementList.map( "addClass", [ "testClass" ] );
+
+			expect( this.$testDiv1.getHtmlElement()
+					.className )
+				.to.equal( "existingClass testClass" );
+			expect( this.$testDiv2.getHtmlElement()
+					.className )
+				.to.equal( "testClass" );
+		} );
+	} );
+} );
+
+describe( "DomElementList from array of HTMLCollection", function () {
+	beforeEach( function () {
+		document.body.innerHTML += "<div class=\"existingClass\"></div><div></div>";
+
+		this.$elementList = domElementListFactory( document.body.getElementsByTagName( "div" ) );
+	} );
+
+	describe( "'map' should apply a function to each DomElement in a list", function () {
+		it( "addClass", function () {
+			this.$elementList.map( "addClass", [ "testClass" ] );
+
+			expect( document.body.getElementsByTagName( "div" )[ 0 ]
+					.className )
+				.to.equal( "existingClass testClass" );
+			expect( document.body.getElementsByTagName( "div" )[ 1 ]
+					.className )
+				.to.equal( "testClass" );
+		} );
+	} );
+} );
+
+describe( "Bulk edit on DomElementList", function () {
+	beforeEach( function () {
+		document.body.innerHTML += "<div class=\"existingClass\"></div><div></div>";
+
+		this.$elementList = domElementListFactory( document.body.getElementsByTagName( "div" ) );
+	} );
+
+	describe( "'map' should apply a function to each DomElement in a list", function () {
+		it( "addClass", function () {
+			var div1 = document.body.getElementsByTagName( "div" )[ 0 ],
+				div2 = document.body.getElementsByTagName( "div" )[ 1 ],
+				$div1 = domHelper.createFromElement( div1 ),
+				$div2 = domHelper.createFromElement( div2 );
+
+			this.$elementList.map( "bulkEdit", [ {
+				"addClass": "testClass",
+				"setData": [ "testDataName", "testData" ]
+			} ] );
+
+			expect( div1.className )
+				.to.equal( "existingClass testClass" );
+			expect( div2.className )
+				.to.equal( "testClass" );
+			expect( $div1.getData( "testDataName" ) )
+				.to.equal( "testData" );
+			expect( $div2.getData( "testDataName" ) )
+				.to.equal( "testData" );
+		} );
+	} );
 } );

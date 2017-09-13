@@ -10,19 +10,18 @@ It is only available as commonJS-module as of now. For frontend use, you probabl
 
 There are basically no checks for wrong types or values. It is assumed that you make sure to pass the correct values and the correct types. The advantage of this is, that it is really fast.
 
-## Size
-
-Format             | Size
-:----------------- | ---:
-Normal             |  12k
-Uglified           |   8k
-Uglified & gzipped |   4k
-
-## Speed
+## Performance
 
 Simple Dom Helper is up to 8 times faster then jQuery and only 60% slower then native code -- while still offering a lot of useful functions for DOM manipulation.
 
 [jsPerf]()
+
+Format                    |     Size
+:------------------------ | -------:
+normal                    |    12 KB
+uglified                  |     8 KB
+uglified & gzipped        |     4 KB
+jQuery minified & gzipped | 28.32 KB
 
 ## Installation
 

@@ -6,8 +6,6 @@ Offers a dependency-free vanilla javascript library to interact with DOM element
 
 The module is intendet to be bundled with the rest of your Javascript.
 
-It is only available as commonJS-module as of now. For frontend use, you probably want to use a build tool like [Browserify](http://browserify.org/) or [WebPack](https://github.com/webpack/webpack).
-
 There are basically no checks for wrong types or values. It is assumed that you make sure to pass the correct values and the correct types. The advantage of this is, that it is really fast.
 
 ## Performance
@@ -25,6 +23,14 @@ jQuery minified & gzipped | 28 KB
 
 ## Installation
 
+### HTML
+
+If you want to use just include the `dist/sdh.js`or `dist/sdh.min.js` file as a javascript. You then have access to a global `domHelper` object;
+
+A commonJS-module is also available. For frontend use, you probably want to use a build tool like [Browserify](http://browserify.org/) or [WebPack](https://github.com/webpack/webpack).
+
+### NPM
+
 `npm install simple-dom-helper -D`
 
 ## Usage
@@ -32,12 +38,10 @@ jQuery minified & gzipped | 28 KB
 Simple Dom Helper uses two object-types to handle Dom Manipulation. `DomElement` for individual elements and `DomElementList` for lists of Elements.
 
 ```javascript
-var $ = require( "simple-dom-helper" );
+var $div = domHelper.create( "div", { "addClass": [ "foo", "bar" ] } );
+// returns a DomElement-object
 
-var $div = $.create( "div", { "addClass": [ "foo", "bar" ] } );
-// returns a DomElement-object, I like to start variable names for DomElement-objects with $ as a naming convention.
-
-var $existingDiv = $.getElementByClassName( "classOfExistingElement" );
+var $existingDiv = domHelper.getElementByClassName( "classOfExistingElement" );
 // returns ONE DomElement for the first matching element found in the dom. For a DomElementList use 'getElementsByClassName'
 
 $existingDiv.append( $div );
@@ -299,3 +303,14 @@ Calls the method of the name passed, on each `DomElement` in this. Like `DomElem
 ## Creating your own extensions
 
 If you want to write your own extensions, you can create a commonJS module, that requires `lib/DomElement` or `lib/DomElementList`and then add to the prototype of the object.
+
+```javascript
+var DomElement = require( "lib/DomElement" );
+DomElement.prototype.newFunction = function () {};
+```
+
+If you are using the static file from `dist/sdh.min.js` this can be accessed via the global `domHelper._element.DomElement` or `domHelper._element.DomElementList`;
+
+```javascript
+domhelper._element.DomElement.prototype.newFunction = function () {};
+```

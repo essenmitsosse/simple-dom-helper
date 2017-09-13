@@ -6,7 +6,8 @@
 	"scripts": {
 		"test": "mocha -R spec test/*",
 		"watchtest": "mocha -R min test/* -watch",
-		"cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*"
+		"cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*",
+		"getbuildsize": "mkdir build-test && browserify simple-dom-helper.js -o build-test/simple-dom-helper.js && uglifyjs build-test/simple-dom-helper.js --mangle -o build-test/simple-dom-helper.min.js && gzip -k build-test/simple-dom-helper.min.js && du -sh build-test/* && rm -rf build-test"
 	},
 	"files": [
 		"lib/",
@@ -28,6 +29,7 @@
 	},
 	"homepage": "https://github.com/essenmitsosse/dom-helper#readme",
 	"devDependencies": {
+		"browserify": "^14.4.0",
 		"chai": "^4.1.1",
 		"coveralls": "^2.13.1",
 		"istanbul": "^0.4.5",
@@ -35,6 +37,7 @@
 		"jsdom-global": "3.0.2",
 		"mocha": "^3.5.0",
 		"sinon": "^3.2.1",
-		"sinon-chai": "^2.13.0"
+		"sinon-chai": "^2.13.0",
+		"uglify-js": "^3.1.0"
 	}
 }

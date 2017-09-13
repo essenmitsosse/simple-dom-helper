@@ -275,14 +275,14 @@ describe( "DomElement - Basics", function () {
 		} );
 	} );
 
-	describe( "'parent' should", function () {
+	describe( "'getParent' should", function () {
 		it( "return the parent DomElement", function () {
 			var $newChildDomElement = domHelper.create( "div" );
 
 			this.$domElement.getHtmlElement()
 				.appendChild( $newChildDomElement.getHtmlElement() );
 
-			expect( $newChildDomElement.parent()
+			expect( $newChildDomElement.getParent()
 					.getHtmlElement() )
 				.to.equal( this.$domElement.getHtmlElement() );
 		} );
@@ -297,7 +297,7 @@ describe( "DomElement - Basics", function () {
 			$newParentDomElement.getHtmlElement()
 				.appendChild( $newChildDomElement.getHtmlElement() );
 
-			expect( $newChildDomElement.parent()
+			expect( $newChildDomElement.getParent()
 					.getHtmlElement() )
 				.to.equal( $newParentDomElement.getHtmlElement() );
 		} );
@@ -305,20 +305,20 @@ describe( "DomElement - Basics", function () {
 		it( "return 'null' if there is no parent", function () {
 			var $newDomElementWithoutParent = domHelper.create( "div" );
 
-			expect( $newDomElementWithoutParent.parent() )
+			expect( $newDomElementWithoutParent.getParent() )
 				.to.equal( null );
 		} );
 
 		it( "return 'document' if the parent is the document itself", function () {
 			var $bodyElement = domHelper.createFromElement( document.getElementsByTagName( "html" )[ 0 ] );
 
-			expect( $bodyElement.parent()
+			expect( $bodyElement.getParent()
 					.getHtmlElement() )
 				.to.equal( document );
 		} );
 	} );
 
-	describe( "'children' should", function () {
+	describe( "'getChildren' should", function () {
 		it( "return a DomElementList of all children DomElements", function () {
 			var $newChildDomElement = domHelper.create( "div" ),
 				$anotherNewChildDomElement = domHelper.create( "div" ),
@@ -329,7 +329,7 @@ describe( "DomElement - Basics", function () {
 			this.$domElement.getHtmlElement()
 				.appendChild( $anotherNewChildDomElement.getHtmlElement() );
 
-			$list = this.$domElement.children();
+			$list = this.$domElement.getChildren();
 
 			expect( $list instanceof DomElementList )
 				.to.equal( true );
@@ -345,7 +345,7 @@ describe( "DomElement - Basics", function () {
 		it( "return a empty DomElementList if there are no children", function () {
 			var $list;
 
-			$list = this.$domElement.children();
+			$list = this.$domElement.getChildren();
 
 			expect( $list instanceof DomElementList )
 				.to.equal( true );

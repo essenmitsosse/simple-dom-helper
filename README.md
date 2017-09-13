@@ -25,7 +25,7 @@ jQuery minified & gzipped | 28 KB
 
 ### HTML
 
-If you want to use just include the `dist/sdh.js`or `dist/sdh.min.js` file as a javascript. You then have access to a global `domHelper` object;
+If you want to use just include the `dist/simple-dom-helper.js`or `dist/simple-dom-helper.min.js` file as a javascript. You then have access to a global `domHelper` object;
 
 A commonJS-module is also available. For frontend use, you probably want to use a build tool like [Browserify](http://browserify.org/) or [WebPack](https://github.com/webpack/webpack).
 
@@ -297,7 +297,7 @@ An object, that contains a list of `DomElements`.
 
 Calls the method of the name passed, on each `DomElement` in this. Like `DomElement.bulkEdit` This only works for methods without a return value. But it works on `bulkEdit` itself, allowing to invoke a number of methods on all `DomElement`s in this at once.
 
-- **Arguments:** `String` (name of a `DomElement`method), followed by the arguments that would usually be passed to that method.
+- **Arguments:** `String` (name of a `DomElement` method), followed by the arguments that would usually be passed to that method.
 - **Returns:** -
 
 ## Creating your own extensions
@@ -309,7 +309,7 @@ var DomElement = require( "lib/DomElement" );
 DomElement.prototype.newFunction = function () {};
 ```
 
-If you are using the static file from `dist/sdh.min.js` this can be accessed via the global `domHelper._element.DomElement` or `domHelper._element.DomElementList`.
+If you are using the static file from `dist/simple-dom-helper.min.js` this can be accessed via the global `domHelper._element.DomElement` or `domHelper._element.DomElementList`.
 
 ```javascript
 domhelper._element.DomElement.prototype.newFunction = function () {};

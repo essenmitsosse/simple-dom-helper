@@ -43,7 +43,9 @@ $findDivAgain === $div // TRUE
 // The DomElement associated with an element in the dom is cached and it will always return the same object.
 ```
 
-### DomHelper
+There are basically no checks for wrong types or values. It is assumed that you make sure to pass the correct values and the correct types.
+
+### domHelper
 
 The only public object of this module. It has the following methods:
 
@@ -138,144 +140,157 @@ The `DomElement` is an object that relates to one HTMLElement, and only one. For
 
 ##### `addClass`
 
-- **Arguments:** `String` (new class name(s))
-- **Returns:**: -
+- **Arguments:** `String` (new class names, seperated by spaces)
+- **Returns:** -
 
 ##### `removeClass`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `String` (class names to be removed, seperated by spaces)
+- **Returns:** -
 
 ##### `hasClass`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `String` (single class name)
+- **Returns:** `boolean`(whether `HTMLElement` has class or not)
 
 ##### `addClasses`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `Array` (of `String`s with new class names)
+- **Returns:** -
 
 ##### `removeClasses`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `Array` (of `String`s with class names to be removed)
+- **Returns:** -
 
 ##### `setAttribute`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `String` (name of attribute), `String` (value of attribute)
+- **Returns:** -
 
 ##### `getAttribute`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `String` (name of attribute)
+- **Returns:** `String` (value of the attribute, `null` if attribute doesn't exist)
 
 ##### `removeAttribute`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `String` (name of attribute)
+- **Returns:** -
 
 ##### `setAttributes`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `Object` (keys are the name of the attribute, the values for each key are the value for each attribute)
+- **Returns:** -
 
 ##### `setHTML`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `String` (HTML code that should replace the current content of the `HTMLElement`)
+- **Returns:** -
 
 ##### `getHTML`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** -
+- **Returns:** `String` (current HTML code of the element)
 
 ##### `setData`
 
-- **Arguments:**
-- **Returns:**
+allows to store arbitrary information with an `DomElement`. The only way to access this information is through `getData` on the `DomElement` it was set on. Since the same `HTMLElement` always returns the same `DomElement`, the data can always be retrieved. This is useful for example to handle `onClick` events.
+
+- **Arguments:** `String`(name under which data should be stored), any data value
+- **Returns:** -
 
 ##### `getData`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `String` (name of data)
+- **Returns:** value of data, returns `undefined` if no data is stored
 
 ##### `removeData`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `String` (name of data that will be deleted)
+- **Returns:** -
 
 ##### `setDatas`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `Object` (keys are the name of the data, the values for each key are the value for each data)
+- **Returns:** -
 
 ##### `setStyle`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `Object` (keys are the names of the style (like `font-size`), the values for each key, are the value for that style (like `12px`))
+- **Returns:** -
 
 ##### `setStyleForce`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `Object` (works like `setStyle`, but removes any existing styles, that are not in the object)
+- **Returns:** -
 
-##### `getElementByClassName`
+##### `getElementByClassName`/`getElementByTagName`/`getElementsByClassName`/`getElementsByTagName`
 
-- **Arguments:**
-- **Returns:**
-
-##### `getElementByTagName`
-
-- **Arguments:**
-- **Returns:**
-
-##### `getElementsByClassName`
-
-- **Arguments:**
-- **Returns:**
-
-##### `getElementsByTagName`
-
-- **Arguments:**
-- **Returns:**
+Works like the methods of the same name of `domHelper`, but only searches the children of the associated `HTMLElement`
 
 ##### `remove`
 
-- **Arguments:**
-- **Returns:**
+Removes the `HTMLElement` from its parent, if one exists.
+
+- **Arguments:** -
+- **Returns:** -
 
 ##### `append`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `DomElement` (appends the `HTMLElement`of the passed `DomElement`to the `HTMLElement` associated with the `DomElement` from which the method is invoked)
+- **Returns:** -
 
 ##### `appendTo`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `DomElement` (appends the `HTMLElement` associated with the `DomElement` from which the method is invoked to the `HTMLElement` of the passed `DomElement`)
+- **Returns:** -
 
 ##### `appendList`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** `Array` (of `DomElement`s, works like `appendTo` for each element in the list)
+- **Returns:** -
 
-##### `parent`
+##### `getParent`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** -
+- **Returns:** `DomElement` (returns the `DomElement` associated with the parent element of the `HTMLElement` for this `DomElement`, returns `null` if there is no parent)
 
-##### `children`
+##### `getChildren`
 
-- **Arguments:**
-- **Returns:**
+- **Arguments:** -
+- **Returns:** `DomElementList` (of all `HTMLElement` children of this element, returns empty `DomElementList` if no children are found)
 
 ##### `bulkEdit`
 
-- **Arguments:**
-- **Returns:**
+Allows to call multiple methods of `DomElement` at once. This will only work for methods with no return value. For example it works for `setData`, but not for `getData`.
+
+- **Arguments:** `Object` (keys are method names of `DomElement`, the values for each key are the arguments that are passed. If a method expects more then one argument, the arguments must be in an `Array`.)
+- **Returns:** -
+
+### DomElementList
+
+An object, that contains a list of `DomElements`.
+
+#### Methods
+
+##### `getList`
+
+- **Arguments:** -
+- **Returns:** `Array` (a list of all `DomElement`s in this)
+
+##### `getLength`
+
+- **Arguments:** -
+- **Returns:** `Number` (number of `DomElement`s in this)
+
+##### `map`
+
+Calls the method of the name passed, on each `DomElement` in this. Like `DomElement.bulkEdit` This only works for methods without a return value. But it works on `bulkEdit` itself, allowing to invoke a number of methods on all `DomElement`s in this at once.
+
+- **Arguments:** `String` (name of a `DomElement`method), followed by the arguments that would usually be passed to that method.
+- **Returns:** -
 
 ## Creating your own extensions
 
-If you want to write your own extensions, you can create a commonJS module, that requires `lib/DomElement` and then add to the prototype of the object. Currently there is no documentation for this, so you will have to look at the code yourself. But it's possible.
+If you want to write your own extensions, you can create a commonJS module, that requires `lib/DomElement` or `lib/DomElementList`and then add to the prototype of the object.

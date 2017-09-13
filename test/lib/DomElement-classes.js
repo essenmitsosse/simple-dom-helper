@@ -114,7 +114,7 @@ describe( "DomElement - getter/setter:", function () {
 			} );
 
 			it( "removes more then one class name at once", function () {
-				this.$domElement.addClass( "classNameNotToBeRemoved testClassNameToBeRemoved anotherClassNameToBeRemoved" );
+				this.$domElement.addClass( "testClassNameToBeRemoved classNameNotToBeRemoved anotherClassNameToBeRemoved" );
 				this.$domElement.removeClass( "testClassNameToBeRemoved anotherClassNameToBeRemoved" );
 
 				expect( this.testDiv.className )

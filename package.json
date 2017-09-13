@@ -7,7 +7,8 @@
 		"test": "mocha -R spec test/*",
 		"watchtest": "mocha -R min test/* -watch",
 		"cover": "node_modules/istanbul/lib/cli.js cover node_modules/mocha/bin/_mocha -- -R spec test/*",
-		"getbuildsize": "mkdir build-test && browserify simple-dom-helper.js -o build-test/simple-dom-helper.js && uglifyjs build-test/simple-dom-helper.js --mangle -o build-test/simple-dom-helper.min.js && gzip -k build-test/simple-dom-helper.min.js && du -sh build-test/* && rm -rf build-test"
+		"getbuildsize": "mkdir build-test && browserify simple-dom-helper.js -o build-test/simple-dom-helper.js && uglifyjs build-test/simple-dom-helper.js --mangle -o build-test/simple-dom-helper.min.js && gzip -k build-test/simple-dom-helper.min.js && du -sh build-test/* && rm -rf build-test",
+		"get-dist": "browserify sdh-dist.js -o dist/sdh.js && uglifyjs dist/sdh.js --mangle -o dist/sdh.min.js"
 	},
 	"files": [
 		"lib/",

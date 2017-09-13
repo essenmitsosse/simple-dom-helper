@@ -357,13 +357,11 @@ describe( "DomElement - Basics", function () {
 		} );
 	} );
 
-	it( "should throw, if a DomElement is passed as an argument", function () {
-		var $domElement;
+	it( "should just return the same element if DomElement is passed as an argument", function () {
+		var $domElement = domHelper.create( "div" );
 
-		expect( function () {
-				$domElement = domHelper.createFromElement( domHelper.create( "div" ) );
-			} )
-			.to.throw();
+		expect( domHelper.createFromElement( $domElement ) )
+			.to.equal( $domElement );
 	} );
 
 	describe( "HTML getter/setter", function () {

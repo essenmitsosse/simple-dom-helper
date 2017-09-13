@@ -302,14 +302,14 @@ Calls the method of the name passed, on each `DomElement` in this. Like `DomElem
 
 ## Creating your own extensions
 
-If you want to write your own extensions, you can create a commonJS module, that requires `lib/DomElement` or `lib/DomElementList`and then add to the prototype of the object.
+If you want to write your own extensions, you can create a commonJS module, that requires `lib/DomElement` or `lib/DomElementList` and then add to the prototype of the object.
 
 ```javascript
 var DomElement = require( "lib/DomElement" );
 DomElement.prototype.newFunction = function () {};
 ```
 
-If you are using the static file from `dist/sdh.min.js` this can be accessed via the global `domHelper._element.DomElement` or `domHelper._element.DomElementList`;
+If you are using the static file from `dist/sdh.min.js` this can be accessed via the global `domHelper._element.DomElement` or `domHelper._element.DomElementList`.
 
 ```javascript
 domhelper._element.DomElement.prototype.newFunction = function () {};

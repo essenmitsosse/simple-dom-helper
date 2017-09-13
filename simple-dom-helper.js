@@ -49,5 +49,9 @@ module.exports = {
 	getElementByClassName: getElementByClassName,
 	getElementByTagName: getElementByTagName,
 	getElementsByClassName: getElementsByClassName,
-	getElementsByTagName: getElementsByTagName
+	getElementsByTagName: getElementsByTagName,
+	_elements: {
+		DomElement: require( "./lib/DomElement" ),
+		DomElementList: require( "./lib/DomElementList" )
+	}
 };

@@ -382,13 +382,6 @@ module.exports = function ( elementsList ) {
 DomElementList = require( "./DomElementList" );
 
 },{"./DomElementList":4}],7:[function(require,module,exports){
-window.domHelper = require( "./simple-dom-helper" );
-window.domHelper._elements = {
-	DomElement: require( "./lib/DomElement" ),
-	DomElementList: require( "./lib/DomElementList" )
-};
-
-},{"./lib/DomElement":1,"./lib/DomElementList":4,"./simple-dom-helper":8}],8:[function(require,module,exports){
 "use strict";
 
 var domElementFactory = require( "./lib/domElementFactory" ),
@@ -440,7 +433,11 @@ module.exports = {
 	getElementByClassName: getElementByClassName,
 	getElementByTagName: getElementByTagName,
 	getElementsByClassName: getElementsByClassName,
-	getElementsByTagName: getElementsByTagName
+	getElementsByTagName: getElementsByTagName,
+	_elements: {
+		DomElement: require( "./lib/DomElement" ),
+		DomElementList: require( "./lib/DomElementList" )
+	}
 };
 
-},{"./lib/domElementFactory":5,"./lib/domElementListFactory":6}]},{},[7]);
+},{"./lib/DomElement":1,"./lib/DomElementList":4,"./lib/domElementFactory":5,"./lib/domElementListFactory":6}]},{},[7]);

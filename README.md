@@ -1,6 +1,6 @@
 # Simple Dom Helper
 
-[![Build Status](https://travis-ci.org/essenmitsosse/simple-dom-helper.svg?branch=master)](https://travis-ci.org/essenmitsosse/simple-dom-helper) [![Coverage Status](https://coveralls.io/repos/github/essenmitsosse/simple-dom-helper/badge.svg?branch=master)](https://coveralls.io/github/essenmitsosse/simple-dom-helper?branch=master) [![Dependency Status](https://david-dm.org/essenmitsosse/simple-dom-bulk-edit.svg)](https://david-dm.org/essenmitsosse/simple-dom-bulk-edit)
+[![Build Status](https://travis-ci.org/essenmitsosse/simple-dom-helper.svg?branch=master)](https://travis-ci.org/essenmitsosse/simple-dom-helper) [![Coverage Status](https://coveralls.io/repos/github/essenmitsosse/simple-dom-helper/badge.svg?branch=master)](https://coveralls.io/github/essenmitsosse/simple-dom-helper?branch=master) [![Dependency Status](https://david-dm.org/essenmitsosse/simple-dom-helper.svg)](https://david-dm.org/essenmitsosse/simple-dom-helper)
 
 Offers a dependency-free vanilla javascript library to interact with DOM elements. Basically a really lightweight version of DOM-interaction part of jQuery (but with a slightly different, more consistent syntax).
 
